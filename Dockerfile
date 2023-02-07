@@ -75,5 +75,8 @@ RUN rm -f .config* && touch .config && \
     sed -i 's/^[ \t]*//g' .config && \
     make defconfig
 
+RUN make download -j8 \
+    && make -j1 V=w
+
 WORKDIR /home
 CMD [ "/bin/bash" ]
