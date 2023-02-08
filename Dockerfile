@@ -52,7 +52,7 @@ RUN apt-get -y update --fix-missing && \
 
 WORKDIR /home
 
-RUN git clone --recursive https://github.com/Mleaf/openwrt.git
+RUN git clone -b openwrt-21.02 --recursive https://github.com/openwrt/openwrt.git
 
 WORKDIR /home/openwrt
 
@@ -63,7 +63,7 @@ RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
     echo "CONFIG_TARGET_ipq40xx=y" >> .config && \
     echo "CONFIG_TARGET_ipq40xx_generic=y" >> .config && \
-    echo "CONFIG_TARGET_ipq40xx_generic_DEVICE_canbox_cm520-79f=y" >> .config && \
+    echo "CONFIG_TARGET_ipq40xx_generic_DEVICE_mobipromo_cm520-79f=y" >> .config && \
     echo "CONFIG_TARGET_ROOTFS_INITRAMFS=y" >> .config && \
     echo "CONFIG_SDK=y" >> .config && \
     echo "CONFIG_MAKE_TOOLCHAIN=y" >> .config && \
