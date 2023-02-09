@@ -78,7 +78,19 @@ RUN rm -f .config* && touch .config && \
     make defconfig
 
 RUN make download -j8 \
-    && make -j1 V=w
+    && make -j1 V=w \
+    && tar -jxvf ./bin/targets/ipq40xx/generic/openwrt-toolchain-ipq40xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.bz2 -C /opt/
+    && tar -Jxvf ./bin/targets/ipq40xx/generic/openwrt-imagebuilder-ipq40xx-generic.Linux-x86_64.tar.xz -C /home/
+    && cd /home && rm -rf ./openwrt
+
+ENV ARCH=arm
+ENV CROSS_COMPILE=/opt/openwrt-toolchain-ipq40xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64/toolchain-arm_cortex-a7+neon-vfpv4_gcc-8.4.0_musl_eabi/bin/arm-openwrt-linux-
+ENV STAGING_DIR=/opt/openwrt-toolchain-ipq40xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64/toolchain-arm_cortex-a7+neon-vfpv4_gcc-8.4.0_musl_eabi/bin
+
+WORKDIR /home/openwrt-imagebuilder-ipq40xx-generic.Linux-x86_64
+
+RUN make image PROFILE="mobipromo_cm520-79f" PACKAGES="wget vim bash"
 
 WORKDIR /home
+
 CMD [ "/bin/bash" ]
