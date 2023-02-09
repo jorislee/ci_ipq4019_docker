@@ -79,8 +79,8 @@ RUN rm -f .config* && touch .config && \
 
 RUN make download -j8 \
     && make -j1 V=w \
-    && tar -jxvf ./bin/targets/ipq40xx/generic/openwrt-toolchain-ipq40xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.bz2 -C /opt/
-    && tar -Jxvf ./bin/targets/ipq40xx/generic/openwrt-imagebuilder-ipq40xx-generic.Linux-x86_64.tar.xz -C /home/
+    && tar -jxvf ./bin/targets/ipq40xx/generic/openwrt-toolchain-ipq40xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.bz2 -C /opt/ \
+    && tar -Jxvf ./bin/targets/ipq40xx/generic/openwrt-imagebuilder-ipq40xx-generic.Linux-x86_64.tar.xz -C /home/ \
     && cd /home && rm -rf ./openwrt
 
 ENV ARCH=arm
