@@ -81,6 +81,8 @@ RUN make download -j8 \
     && make -j1 V=w \
     && tar -jxvf ./bin/targets/ipq40xx/generic/openwrt-toolchain-ipq40xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.bz2 -C /opt/ \
     && tar -Jxvf ./bin/targets/ipq40xx/generic/openwrt-imagebuilder-ipq40xx-generic.Linux-x86_64.tar.xz -C /home/ \
+    && mkdir -p /opt/Kernel-ipq4019 \
+    && mv build_dir/target-arm_cortex-a7+neon-vfpv4_musl_eabi/linux-ipq40xx_generic/linux-5.4.230/ /opt/Kernel-ipq4019
     && cd /home && rm -rf ./openwrt
 
 ENV ARCH=arm
