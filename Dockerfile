@@ -59,6 +59,8 @@ WORKDIR /home/openwrt
 RUN ./scripts/feeds update -a \
     && ./scripts/feeds install -a
 
+COPY ./qcom-ipq4019-cm520-79f.dts ./target/linux/ipq40xx/files/arch/arm/boot/dts/qcom-ipq4019-cm520-79f.dts
+
 RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
     echo "CONFIG_TARGET_ipq40xx=y" >> .config && \
